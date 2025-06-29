@@ -1,0 +1,781 @@
+/* ===== CUSOLISTA BLOCK - ARCHIVO COMPLETO - FONDO BLANCO ===== */
+
+/* Variables CSS dinámicas */
+:root {
+    --curso_lista-primary: #667eea;
+    --curso_lista-secondary: #764ba2;
+    --curso_lista-text-primary: #2c3e50;
+    --curso_lista-text-secondary: #7f8c8d;
+    --curso_lista-background: #ffffff; /* FONDO BLANCO */
+    --curso_lista-border: #ecf0f1;
+    --curso_lista-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    --curso_lista-shadow-hover: 0 4px 16px rgba(0,0,0,0.12);
+    --curso_lista-radius: 10px;
+    --curso_lista-transition: all 0.25s ease;
+    
+    /* Tamaños - 80px */
+    --curso_lista-element-size: 80px;
+    --curso_lista-circle-size: 64px;
+    
+    /* Tipografía */
+    --curso_lista-title-color: #2c3e50;
+    --curso_lista-title-size: 1rem;
+    --curso_lista-title-weight: 600;
+}
+
+/* Reset específico del bloque */
+.block_curso_lista-info-element {
+    width: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.block_curso_lista-info-element *,
+.block_curso_lista-info-element *::before,
+.block_curso_lista-info-element *::after {
+    box-sizing: border-box;
+}
+
+/* ===== CURSO BLOCK - BASE CON FONDO BLANCO ===== */
+.course-block {
+    background: var(--curso_lista-background);
+    border-radius: var(--curso_lista-radius);
+    box-shadow: var(--curso_lista-shadow);
+    border: 1px solid var(--curso_lista-border);
+    transition: var(--curso_lista-transition);
+    margin-bottom: 1rem;
+    overflow: hidden;
+    position: relative;
+    min-height: 100px;
+    width: 100%;
+}
+
+.course-block:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--curso_lista-shadow-hover);
+}
+
+/* Layout Grid - Elementos de 80px */
+.block_curso_lista-info-element .course-block {
+    display: grid !important;
+    grid-template-columns: var(--curso_lista-element-size) 1fr var(--curso_lista-element-size) auto !important;
+    grid-template-rows: 1fr !important;
+    gap: 1rem !important;
+    align-items: center !important;
+    padding: 1rem !important;
+}
+
+/* ===== IMAGEN DEL CURSO - 80px ===== */
+.course-image {
+    grid-column: 1 !important;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    background: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--curso_lista-element-size) !important;
+    height: var(--curso_lista-element-size) !important;
+    flex-shrink: 0;
+}
+
+.course-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--curso_lista-transition);
+}
+
+.course-block:hover .course-image img {
+    transform: scale(1.05);
+}
+
+/* ===== NOMBRE DEL CURSO ===== */
+.course-name {
+    grid-column: 2 !important;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.course-name h3 {
+    margin: 0 !important;
+    font-size: var(--curso_lista-title-size);
+    font-weight: var(--curso_lista-title-weight);
+    color: var(--curso_lista-title-color);
+    line-height: 1.3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    width: 100%;
+}
+
+/* ===== PROGRESO 80px ===== */
+.progress-container-80 {
+    grid-column: 3 !important;
+    width: var(--curso_lista-element-size) !important;
+    height: var(--curso_lista-element-size) !important;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+/* Texto "PROGRESO" en NEGRO - MEJOR POSICIONADO */
+.progress-label-black {
+    position: absolute;
+    top: -2px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 0.65rem !important;
+    color: #000000 !important; /* NEGRO */
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+    height: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+}
+
+/* Contenedor del círculo - CORREGIDO */
+.progress-circle-container {
+    width: var(--curso_lista-circle-size);
+    height: var(--curso_lista-circle-size);
+    position: relative;
+    margin-top: 10px; /* Reducido para mejor alineación */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.progress-circle-container svg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+}
+
+/* Círculo de fondo - gris claro */
+.progress-bg {
+    fill: none;
+    stroke: #e0e0e0;
+    stroke-width: 3;
+}
+
+/* Círculo de progreso - con gradiente */
+.progress-fill {
+    fill: none;
+    stroke-width: 3;
+    stroke-linecap: round;
+    transform-origin: center;
+    transition: stroke-dashoffset 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ELIMINADO - Se consolidará al final */
+
+/* ===== BOTÓN DE ACCIÓN ===== */
+.course-action {
+    grid-column: 4 !important;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-course {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.6rem 1.2rem;
+    background: linear-gradient(135deg, var(--curso_lista-primary) 0%, var(--curso_lista-secondary) 100%);
+    color: white !important;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: var(--curso_lista-transition);
+    border: none;
+    cursor: pointer;
+    min-width: 100px;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
+    white-space: nowrap;
+}
+
+.btn-course:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+    text-decoration: none;
+    color: white !important;
+}
+
+.btn-course:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.5);
+}
+
+/* ===== SIDEBAR - LAYOUT RESPONSIVE ===== */
+/* Para sidebars estrechos (menos de 300px) - Layout vertical */
+.block-region-side-pre .block_curso_lista-info-element .course-block,
+.block-region-side-post .block_curso_lista-info-element .course-block,
+.drawercontent .course-block {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    padding: 1rem !important;
+    gap: 0.8rem !important;
+    grid-template-columns: none !important;
+    min-height: auto !important;
+}
+
+/* Elementos más pequeños en sidebar estrecho */
+.block-region-side-pre .course-image,
+.block-region-side-post .course-image,
+.drawercontent .course-image {
+    width: 60px !important;
+    height: 60px !important;
+    flex-shrink: 0;
+}
+
+.block-region-side-pre .progress-container-80,
+.block-region-side-post .progress-container-80,
+.drawercontent .progress-container-80 {
+    width: 60px !important;
+    height: 60px !important;
+    flex-shrink: 0;
+}
+
+.block-region-side-pre .progress-circle-container,
+.block-region-side-post .progress-circle-container,
+.drawercontent .progress-circle-container {
+    width: 48px !important;
+    height: 48px !important;
+    margin-top: 6px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: relative !important;
+}
+
+/* ELIMINADO - Se consolidará al final */
+
+.block-region-side-pre .progress-label-black,
+.block-region-side-post .progress-label-black,
+.drawercontent .progress-label-black {
+    font-size: 0.55rem !important;
+    height: 12px !important;
+}
+
+.block-region-side-pre .course-name,
+.block-region-side-post .course-name,
+.drawercontent .course-name {
+    width: 100% !important;
+    justify-content: center !important;
+    order: 1;
+}
+
+.block-region-side-pre .course-name h3,
+.block-region-side-post .course-name h3,
+.drawercontent .course-name h3 {
+    text-align: center !important;
+    font-size: 0.85rem !important;
+    line-height: 1.2 !important;
+    margin: 0 !important;
+    -webkit-line-clamp: 3 !important;
+}
+
+.block-region-side-pre .course-action,
+.block-region-side-post .course-action,
+.drawercontent .course-action {
+    width: 100% !important;
+    order: 3;
+}
+
+.block-region-side-pre .btn-course,
+.block-region-side-post .btn-course,
+.drawercontent .btn-course {
+    width: 100% !important;
+    max-width: 160px !important;
+    padding: 0.5rem 0.8rem !important;
+    font-size: 0.75rem !important;
+}
+
+/* Para sidebars más anchos (más de 300px) - Layout horizontal compacto */
+@media (min-width: 300px) {
+    .block-region-side-pre .block_curso_lista-info-element .course-block,
+    .block-region-side-post .block_curso_lista-info-element .course-block {
+        display: grid !important;
+        grid-template-columns: 50px 1fr 50px !important;
+        grid-template-rows: auto auto !important;
+        gap: 0.5rem !important;
+        align-items: center !important;
+        text-align: left !important;
+        padding: 0.8rem !important;
+    }
+
+    .block-region-side-pre .course-image,
+    .block-region-side-post .course-image {
+        grid-column: 1 !important;
+        grid-row: 1 / 3 !important;
+        width: 50px !important;
+        height: 50px !important;
+    }
+
+    .block-region-side-pre .course-name,
+    .block-region-side-post .course-name {
+        grid-column: 2 !important;
+        grid-row: 1 !important;
+        justify-content: flex-start !important;
+    }
+
+    .block-region-side-pre .course-name h3,
+    .block-region-side-post .course-name h3 {
+        font-size: 0.8rem !important;
+        text-align: left !important;
+        -webkit-line-clamp: 2 !important;
+    }
+
+    .block-region-side-pre .progress-container-80,
+    .block-region-side-post .progress-container-80 {
+        grid-column: 3 !important;
+        grid-row: 1 / 3 !important;
+        width: 50px !important;
+        height: 50px !important;
+    }
+
+    .block-region-side-pre .progress-circle-container,
+    .block-region-side-post .progress-circle-container {
+        width: 40px !important;
+        height: 40px !important;
+        margin-top: 4px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    /* ELIMINADO - Se consolidará al final */
+
+    .block-region-side-pre .progress-label-black,
+    .block-region-side-post .progress-label-black {
+        font-size: 0.5rem !important;
+        height: 10px !important;
+    }
+
+    .block-region-side-pre .course-action,
+    .block-region-side-post .course-action {
+        grid-column: 2 !important;
+        grid-row: 2 !important;
+        justify-content: flex-start !important;
+        width: auto !important;
+        margin-top: 0.3rem !important;
+    }
+
+    .block-region-side-pre .btn-course,
+    .block-region-side-post .btn-course {
+        width: auto !important;
+        min-width: 80px !important;
+        max-width: 120px !important;
+        padding: 0.4rem 0.8rem !important;
+        font-size: 0.7rem !important;
+    }
+}
+
+/* ===== LAYOUT MOBILE - VERTICAL ===== */
+@media (max-width: 767px) {
+    .block_curso_lista-info-element .course-block {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+        padding: 1.5rem 1rem !important;
+        gap: 1rem !important;
+        grid-template-columns: none !important;
+    }
+    
+    .course-image,
+    .progress-container-80 {
+        width: var(--curso_lista-element-size) !important;
+        height: var(--curso_lista-element-size) !important;
+    }
+    
+    .course-name {
+        width: 100% !important;
+        justify-content: center !important;
+    }
+    
+    .course-name h3 {
+        text-align: center !important;
+    }
+    
+    .course-action {
+        width: 100% !important;
+    }
+    
+    .btn-course {
+        width: 100% !important;
+        max-width: 220px !important;
+    }
+}
+
+/* ===== TABLET - RESPONSIVE INTERMEDIO ===== */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .block_curso_lista-info-element .course-block {
+        grid-template-columns: 70px 1fr 70px auto !important;
+        gap: 0.8rem !important;
+        padding: 0.8rem !important;
+    }
+    
+    .course-image,
+    .progress-container-80 {
+        width: 70px !important;
+        height: 70px !important;
+    }
+    
+    .progress-circle-container {
+        width: 56px !important;
+        height: 56px !important;
+    }
+    
+    /* ELIMINADO - Se consolidará al final */
+    
+    .progress-label-black {
+        font-size: 0.6rem !important;
+    }
+    
+    .btn-course {
+        padding: 0.5rem 1rem !important;
+        font-size: 0.8rem !important;
+        min-width: 90px !important;
+    }
+}
+
+/* ===== ESTADO SIN CURSOS ===== */
+.no-courses-message {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    color: var(--curso_lista-text-secondary);
+    font-style: italic;
+    background: var(--curso_lista-background); /* FONDO BLANCO */
+    border-radius: var(--curso_lista-radius);
+    box-shadow: var(--curso_lista-shadow);
+    border: 1px solid var(--curso_lista-border);
+}
+
+.no-courses-message p {
+    margin: 0 0 0.5rem 0;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* ===== ANIMACIONES ===== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.course-block {
+    animation: fadeInUp 0.4s ease-out;
+}
+
+.course-block:nth-child(2) { animation-delay: 0.05s; }
+.course-block:nth-child(3) { animation-delay: 0.1s; }
+.course-block:nth-child(4) { animation-delay: 0.15s; }
+
+/* ===== MODO OSCURO - MANTENER FONDO BLANCO ===== */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --curso_lista-text-primary: #2c3e50; /* MANTENER TEXTO OSCURO */
+        --curso_lista-text-secondary: #7f8c8d;
+        --curso_lista-background: #ffffff; /* FORZAR FONDO BLANCO */
+        --curso_lista-border: #ecf0f1;
+        --curso_lista-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        --curso_lista-shadow-hover: 0 4px 16px rgba(0,0,0,0.15);
+    }
+    
+    .progress-bg {
+        stroke: #e0e0e0; /* MANTENER GRIS CLARO */
+    }
+    
+    .progress-label-black {
+        color: #000000 !important; /* MANTENER NEGRO */
+    }
+    
+    .course-name h3 {
+        color: #2c3e50 !important; /* MANTENER TEXTO OSCURO */
+    }
+    
+    /* ELIMINADO - Se consolidará al final */
+}
+
+/* ===== ACCESIBILIDAD ===== */
+.course-block:focus-within {
+    outline: 2px solid var(--curso_lista-primary);
+    outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .progress-fill {
+        transition: none !important;
+    }
+    
+    .course-block {
+        animation: none !important;
+    }
+    
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* ===== FIX IMPORTANTE - Progreso SVG ===== */
+.progress-fill {
+    stroke: #764ba2 !important;
+    stroke-width: 3 !important;
+    stroke-linecap: round !important;
+    fill: none !important;
+    transform-origin: center !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Asegurar que el SVG sea visible */
+.progress-circle-container svg {
+    overflow: visible !important;
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* Círculo de fondo visible */
+.progress-bg {
+    stroke: #e0e0e0 !important;
+    stroke-width: 3 !important;
+    fill: none !important;
+    opacity: 1 !important;
+}
+
+/* ===== COMPATIBILIDAD - Ocultar elementos duplicados ===== */
+.course-details,
+.progress-container:not(.progress-container-80),
+.progress-text,
+.progress-wrapper,
+.progress-circle:not(.progress-circle-container),
+.progress-compact,
+.progress-ring:not(.progress-circle-container .progress-ring) {
+    display: none !important;
+}
+
+/* Mostrar solo los nuevos elementos */
+.progress-container-80,
+.progress-circle-container {
+    display: flex !important;
+}
+
+/* ===== MEJORAS ADICIONALES ===== */
+
+/* Indicador de carga suave */
+.course-block.loading {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+/* Estados hover mejorados */
+.course-block:hover .btn-course {
+    transform: translateY(-1px) scale(1.02);
+}
+
+/* Mejoras de accesibilidad para lectores de pantalla */
+.progress-container-80[role="progressbar"] {
+    position: relative;
+}
+
+.progress-container-80[role="progressbar"]:after {
+    content: attr(aria-label);
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+/* Soporte para modo de alto contraste */
+@media (prefers-contrast: high) {
+    .course-block {
+        border: 2px solid #000;
+    }
+    
+    .progress-bg {
+        stroke: #666;
+        stroke-width: 4;
+    }
+    
+    .progress-fill {
+        stroke-width: 4;
+    }
+    
+    .btn-course {
+        border: 2px solid #000;
+    }
+}
+
+/* Fix para algunos temas de Moodle que pueden interferir */
+.block_curso_lista .course-block,
+.block_curso_lista .course-block * {
+    box-sizing: border-box !important;
+}
+
+.block_curso_lista .course-block {
+    background: #ffffff !important; /* FORZAR FONDO BLANCO */
+}
+
+/* Asegurar que el grid funcione en todos los temas */
+.block_curso_lista-info-element .course-block {
+    display: grid !important;
+    grid-template-columns: 80px 1fr 80px auto !important;
+}
+
+/* Asegurar que SVG sea visible en todos los temas */
+.block_curso_lista svg {
+    overflow: visible !important;
+}
+
+/* ===== DEFINICIONES FINALES Y ÚNICAS - SIN DUPLICADOS ===== */
+
+/* Contenedor principal del progreso */
+.progress-container-80 {
+    position: relative !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: var(--curso_lista-element-size) !important;
+    height: var(--curso_lista-element-size) !important;
+    flex-shrink: 0;
+    overflow: visible !important;
+}
+
+/* Contenedor del círculo SVG */
+.progress-circle-container {
+    position: relative !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: var(--curso_lista-circle-size) !important;
+    height: var(--curso_lista-circle-size) !important;
+    margin-top: 10px !important;
+}
+
+/* SVG centrado */
+.progress-circle-container svg {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    display: block !important;
+    overflow: visible !important;
+}
+
+/* Porcentaje perfectamente centrado */
+.progress-percentage {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    z-index: 15 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 0.9rem !important;
+    font-weight: 700 !important;
+    color: #2c3e50 !important;
+    line-height: 1 !important;
+    pointer-events: none;
+    display: block !important;
+    width: auto !important;
+    height: auto !important;
+}
+
+/* Estilos específicos para sidebars estrechos */
+.block-region-side-pre .progress-container-80,
+.block-region-side-post .progress-container-80,
+.drawercontent .progress-container-80 {
+    width: 60px !important;
+    height: 60px !important;
+}
+
+.block-region-side-pre .progress-circle-container,
+.block-region-side-post .progress-circle-container,
+.drawercontent .progress-circle-container {
+    width: 48px !important;
+    height: 48px !important;
+    margin-top: 6px !important;
+}
+
+.block-region-side-pre .progress-percentage,
+.block-region-side-post .progress-percentage,
+.drawercontent .progress-percentage {
+    font-size: 0.7rem !important;
+}
+
+/* Estilos específicos para sidebars medianos */
+@media (min-width: 300px) {
+    .block-region-side-pre .progress-container-80,
+    .block-region-side-post .progress-container-80 {
+        width: 50px !important;
+        height: 50px !important;
+    }
+
+    .block-region-side-pre .progress-circle-container,
+    .block-region-side-post .progress-circle-container {
+        width: 40px !important;
+        height: 40px !important;
+        margin-top: 4px !important;
+    }
+
+    .block-region-side-pre .progress-percentage,
+    .block-region-side-post .progress-percentage {
+        font-size: 0.65rem !important;
+    }
+}
+
+/* Estilos para tablet */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .progress-container-80 {
+        width: 70px !important;
+        height: 70px !important;
+    }
+    
+    .progress-circle-container {
+        width: 56px !important;
+        height: 56px !important;
+    }
+    
+    .progress-percentage {
+        font-size: 0.8rem !important;
+    }
+}
